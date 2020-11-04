@@ -14,7 +14,7 @@ public class Test {
 				"Point p is selected: " + p.isSelected());
 		
 		double result = p.distance(40, 50);
-		System.out.println(result);
+		System.out.println(result); 
 
 	}
 
