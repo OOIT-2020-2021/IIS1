@@ -78,6 +78,31 @@ public class Test {
 		c1.getCenter().setX(r1.area() - l1.getStartPoint().getY());
 		System.out.println("X of center of c1 = " + c1.getCenter().getX());
 		
+		Point p4 = new Point(50, 100);
+		Point p2 = new Point(50, 100);
+		Line l2 = new Line(p4, new Point(400, 500));
+		Rectangle r2 = new Rectangle(p1, 100, 200);
+		Circle c2 = new Circle(new Point(300, 300), 50);
+		
+		System.out.println(p4);
+		System.out.println(l2);
+		System.out.println(r2);
+		System.out.println(c2);
+		
+		int a = 5;
+		int b = 5;
+		System.out.println(a == b);
+		
+		String s1 = new String("Hello World");
+		String s2 = new String("Hello World");
+		
+		System.out.println(s1 == s2); // poredjenje po referenci
+		System.out.println(s1.equals(s2)); // poredjenje po vrednosti
+		
+		System.out.println(p4.equals(p1));
+		System.out.println(p4.equals(c2));
+		System.out.println(p4.equals(p2));
+		
 	}
 
 }
