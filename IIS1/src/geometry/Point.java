@@ -1,6 +1,8 @@
 package geometry;
 
-public class Point {
+import java.awt.Graphics;
+
+public class Point extends Shape {
 
 	private int x;
 	private int y;
@@ -19,6 +21,20 @@ public class Point {
 		this(x, y); // mora biti 1. linija koda
 		this.selected = selected;
 		// this.setSelected(selected);
+	}
+	
+
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public boolean contains(int x, int y) {
+		return this.distance(x, y) <= 3;
+		/*
+		 * if (this.distance(x, y) <= 3) { return true; } else { return false; }
+		 */
 	}
 	
 	public double distance(int x2, int y2) {

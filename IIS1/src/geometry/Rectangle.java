@@ -1,6 +1,8 @@
 package geometry;
 
-public class Rectangle {
+import java.awt.Graphics;
+
+public class Rectangle extends SurfaceShape {
 
 	private Point upperLeftPoint;
 	private int width;
@@ -20,6 +22,40 @@ public class Rectangle {
 	public Rectangle(Point upperLeftPoint, int width, int height, boolean selected) {
 		this(upperLeftPoint, width, height);
 		this.selected = selected;
+	}
+
+	@Override
+	public void fill(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public boolean contains(int x, int y) {
+		if(upperLeftPoint.getX() <= x &&
+				upperLeftPoint.getY() <= y &&
+				x <= upperLeftPoint.getX() + width &&
+				y <= upperLeftPoint.getY() + height) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean contains(Point p) {
+		if(upperLeftPoint.getX() <= p.getX() &&
+				upperLeftPoint.getY() <= p.getY() &&
+				p.getX() <= upperLeftPoint.getX() + width &&
+				p.getY() <= upperLeftPoint.getY() + height) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public int area() {
