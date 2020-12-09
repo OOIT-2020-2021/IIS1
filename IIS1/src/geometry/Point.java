@@ -1,12 +1,12 @@
 package geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Point extends Shape {
 
 	private int x;
 	private int y;
-	private boolean selected;
 	
 	public Point() {
 		
@@ -19,14 +19,21 @@ public class Point extends Shape {
 	
 	public Point(int x, int y, boolean selected) {
 		this(x, y); // mora biti 1. linija koda
-		this.selected = selected;
+		this.setSelected(selected);
 		// this.setSelected(selected);
+	}
+	
+	public Point(int x, int y, boolean selected, Color color) {
+		this(x,y,selected);
+		this.setColor(color);
 	}
 	
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		g.setColor(getColor());
+		g.drawLine(this.x-2, this.y, this.x+2, this.y);
+		g.drawLine(this.x, this.y-2, this.x, this.y+2);
 		
 	}
 	
@@ -71,14 +78,6 @@ public class Point extends Shape {
 	
 	public void setY(int y) {
 		this.y = y;
-	}
-	
-	public boolean isSelected() {
-		return this.selected;
-	}
-	
-	public void setSelected(boolean selected) {
-		this.selected = selected;
 	}
 	
 	public String toString() {

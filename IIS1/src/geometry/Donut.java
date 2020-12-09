@@ -1,38 +1,53 @@
 package geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Donut extends Circle {
 
 	private int innerRadius;
-	private boolean selected;
-	
+
 	public Donut() {
-		
+
 	}
-	
+
 	public Donut(Point center, int radius, int innerRadius) {
 		super(center, radius); // mora biti 1. linija koda
 		this.innerRadius = innerRadius;
 	}
-	
+
 	public Donut(Point center, int radius, int innerRadius, boolean selected) {
 		this(center, radius, innerRadius);
-		this.selected = selected;
+		this.setSelected(selected);
 	}
 	
-	/*
-	 * @Override public void fill(Graphics g) { // TODO Auto-generated method stub
-	 * 
-	 * }
-	 */
-
-	/*
-	 * @Override public void draw(Graphics g) { // TODO Auto-generated method stub
-	 * 
-	 * }
-	 */
+	public Donut(Point center, int radius, int innerRadius, boolean selected, Color color) {
+		this(center, radius, innerRadius, selected);
+		this.setColor(color);
+	}
 	
+	public Donut(Point center, int radius, int innerRadius, boolean selected, Color color, Color innerColor) {
+		this(center, radius, innerRadius, selected, color);
+		this.setInnerColor(innerColor);
+	}
+
+	@Override
+	public void fill(Graphics g) {
+		g.setColor(getInnerColor());
+		super.fill(g);
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillOval(this.getCenter().getX()-this.innerRadius, this.getCenter().getY()-this.innerRadius,
+				this.innerRadius*2, this.innerRadius*2);
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		super.draw(g);
+		g.setColor(getColor());
+		g.drawOval(this.getCenter().getX() - this.innerRadius, this.getCenter().getY() - this.innerRadius,
+				this.innerRadius * 2, this.innerRadius * 2);
+	}
+
 	public double area() {
 		return super.area() - innerRadius * innerRadius * Math.PI;
 	}
@@ -41,18 +56,17 @@ public class Donut extends Circle {
 		double dFromCenter = this.getCenter().distance(x, y);
 		return super.contains(x, y) && dFromCenter > innerRadius;
 	}
-	
+
 	public boolean contains(Point p) {
 		double dFromCenter = this.getCenter().distance(p.getX(), p.getY());
 		return super.contains(p.getX(), p.getY()) && dFromCenter > innerRadius;
 	}
-	
+
 	public boolean equals(Object obj) {
 		if (obj instanceof Donut) {
 			Donut pomocni = (Donut) obj;
-			if (this.getCenter().equals(pomocni.getCenter()) &&
-					this.getRadius() == pomocni.getRadius() &&
-					this.innerRadius == pomocni.innerRadius) {
+			if (this.getCenter().equals(pomocni.getCenter()) && this.getRadius() == pomocni.getRadius()
+					&& this.innerRadius == pomocni.innerRadius) {
 				return true;
 			} else {
 				return false;
@@ -61,22 +75,18 @@ public class Donut extends Circle {
 			return false;
 		}
 	}
-	
+
 	public int getInnerRadius() {
 		return innerRadius;
 	}
+
 	public void setInnerRadius(int innerRadius) {
 		this.innerRadius = innerRadius;
 	}
-	public boolean isSelected() {
-		return selected;
-	}
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
-	
+
+
 	public String toString() {
 		return super.toString() + ", inner radius=" + innerRadius;
 	}
-	
+
 }

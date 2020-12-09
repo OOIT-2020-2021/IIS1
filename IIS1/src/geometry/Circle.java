@@ -1,12 +1,12 @@
 package geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Circle extends SurfaceShape {
 
 	private Point center;
 	private int radius;
-	private boolean selected;
 	
 	public Circle() {
 		
@@ -19,7 +19,17 @@ public class Circle extends SurfaceShape {
 	
 	public Circle(Point center, int radius, boolean selected) {
 		this(center, radius);
-		this.selected = selected;
+		this.setSelected(selected);
+	}
+	
+	public Circle(Point center, int radius, boolean selected, Color color) {
+		this(center, radius, selected);
+		this.setColor(color);
+	}
+	
+	public Circle(Point center, int radius, boolean selected, Color color, Color innerColor) {
+		this(center, radius, selected, color);
+		this.setInnerColor(innerColor);
 	}
 	
 	public boolean contains(int x, int y) {
@@ -32,13 +42,17 @@ public class Circle extends SurfaceShape {
 	
 	@Override
 	public void fill(Graphics g) {
-		// TODO Auto-generated method stub
+		g.setColor(getInnerColor());
+		g.fillOval(this.center.getX() - this.radius + 1, this.center.getY() - this.radius + 1,
+				this.radius*2 - 2, this.radius*2 - 2);
 		
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		g.setColor(getColor());
+		g.drawOval(this.center.getX() - this.radius, this.center.getY() - this.radius, this.radius*2, this.radius*2);
+		this.fill(g);
 		
 	}
 	
@@ -71,12 +85,6 @@ public class Circle extends SurfaceShape {
 	}
 	public void setRadius(int radius) {
 		this.radius = radius;
-	}
-	public boolean isSelected() {
-		return selected;
-	}
-	public void setSelected(boolean selected) {
-		this.selected = selected;
 	}
 	
 	public String toString() {
