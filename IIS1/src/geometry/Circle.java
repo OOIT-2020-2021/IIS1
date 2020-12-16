@@ -32,6 +32,20 @@ public class Circle extends SurfaceShape {
 		this.setInnerColor(innerColor);
 	}
 	
+	@Override
+	public int compareTo(Object o) {
+		if(o instanceof Circle) {
+			return this.radius - ((Circle) o).radius;
+		}
+		return 0;
+	}
+	
+	@Override
+	public void moveBy(int byX, int byY) {
+		this.center.moveBy(byX, byY);
+		
+	}
+	
 	public boolean contains(int x, int y) {
 		return center.distance(x, y) <= radius;
 	}
