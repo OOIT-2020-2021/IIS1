@@ -23,19 +23,19 @@ public class Drawing extends JPanel {
 	
 	public void paint(Graphics g) {
 		
-		Point p = new Point(50, 50, false, Color.BLUE);
+		Point p = new Point(50, 50, true, Color.BLUE);
 		// p.draw(g);
 		
-		Line l = new Line(new Point(70, 70), new Point(70, 200), false, Color.RED);
+		Line l = new Line(new Point(70, 70), new Point(150, 200), true, Color.RED);
 		// l.draw(g);
 		
-		Circle c = new Circle(new Point(200, 120), 40, false, Color.RED, Color.GREEN);
+		Circle c = new Circle(new Point(200, 120), 40, true, Color.RED, Color.GREEN);
 		// c.draw(g);
 		
-		Rectangle r = new Rectangle(new Point(300, 60), 70, 120, false, Color.BLACK, Color.MAGENTA);
+		Rectangle r = new Rectangle(new Point(300, 60), 70, 120, true, Color.BLACK, Color.MAGENTA);
 		// r.draw(g);
 		
-		Donut d = new Donut(new Point(400, 300), 80, 20, false, Color.BLACK, Color.YELLOW);
+		Donut d = new Donut(new Point(400, 300), 80, 20, true, Color.BLACK, Color.YELLOW);
 		// d.draw(g);
 		
 		// ArrayList
@@ -62,13 +62,14 @@ public class Drawing extends JPanel {
 		
 		// kreirati i dodati u listu, a potom i iscrtati novu liniju l1 tako da ona bude
 		// 4. element u listi
-		Line l1 = new Line(new Point(450, 200), new Point(550, 200));
-		shapes.add(3, l1);
-		
-		shapes.get(3).draw(g);
+//		Line l1 = new Line(new Point(450, 200), new Point(550, 200));
+//		shapes.add(3, l1);
+//		
+//		shapes.get(3).draw(g);
 		
 		// ukloniti drugi element liste
-		shapes.remove(1);
+		// shapes.remove(1);
+		
 		
 		
 		// Pomocu for each iscrtati svaki oblik iz liste shapes
@@ -77,11 +78,11 @@ public class Drawing extends JPanel {
 		}
 		
 		// iscrtati samo povrsinske oblike
-		for(Shape s : shapes) {
-			if(s instanceof SurfaceShape) {
-				s.draw(g);
-			}
-		}
+//		for(Shape s : shapes) {
+//			if(s instanceof SurfaceShape) {
+//				s.draw(g);
+//			}
+//		}
 		
 	}
 
