@@ -238,6 +238,35 @@ public class FrmIgraci extends JFrame {
 		});
 		pnlSouth.add(btnIspisi);
 		
+		JButton btnDodajIgraca = new JButton("Dodaj igraca");
+		btnDodajIgraca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DlgIgraci dlgIgrac = new DlgIgraci();
+				dlgIgrac.setVisible(true);
+				if (dlgIgrac.isOk) {
+					dlm.addElement(dlgIgrac.txtIme.getText() + " " + dlgIgrac.txtPrezime.getText());
+				}
+			}
+		});
+		pnlSouth.add(btnDodajIgraca);
+		
+		JButton btnModifikujIgraca = new JButton("Modifikuj igraca");
+		btnModifikujIgraca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DlgIgraci dlgModifikacija = new DlgIgraci();
+				String[] split = dlm.getElementAt(listIgraci.getSelectedIndex()).toString().split(" ");
+				dlgModifikacija.txtIme.setText(split[0]);
+				dlgModifikacija.txtPrezime.setText(split[1]);
+				dlgModifikacija.setVisible(true);
+				
+				if (dlgModifikacija.isOk) {
+					dlm.remove(listIgraci.getSelectedIndex());
+					dlm.addElement(dlgModifikacija.txtIme.getText() + " " + dlgModifikacija.txtPrezime.getText());
+				}
+			}
+		});
+		pnlSouth.add(btnModifikujIgraca);
+		
 		listIgraci.setModel(dlm); // bindovanje modela (dlm) na JList-u (listIgraci)
 		
 	}
